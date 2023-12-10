@@ -3,16 +3,32 @@
 @tailwind utilities;
 
 * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 body {
-  background-color: #0f172a;
+    background-color: #0f172a;
+    height: 100%;
 }
 
 card {
-  background-color: #1e293b;
-  color: white;
+    background-color: #1e293b;
+    color: white;
+}
+
+.icon {
+    color: white;
+}
+
+.fiIcon {
+    min-width: 1.5em;
+    min-height: 1.5em;
+}
+
+[data-placeholder]:empty:before {
+    content: attr(data-placeholder);
+    color: #888;
+    font-style: italic;
 }
