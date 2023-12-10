@@ -87,6 +87,7 @@ NoteDetail.propTypes = {
   onRestoreArchive: PropTypes.func.isRequired,
   onArchive: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
 };
 
 export default NoteDetail;

@@ -52,6 +52,8 @@ NotesContainer.propTypes = {
   title: PropTypes.string.isRequired,
   handleArchiveNote: PropTypes.func,
   handleRestoreArchiveNote: PropTypes.func,
+  keyword: PropTypes.string.isRequired,
+  keywordChange: PropTypes.func.isRequired,
 };
 
 export default NotesContainer;

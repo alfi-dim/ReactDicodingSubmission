@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export default function Header({title}) {
   return (
     <div className="mx-auto w-full lg:mx-0 border-b border-gray-200 pb-4">
@@ -5,3 +7,7 @@ export default function Header({title}) {
     </div>
   );
 }
+
+Header.propTypes = {
+  title: PropTypes.string.isRequired,
+};
