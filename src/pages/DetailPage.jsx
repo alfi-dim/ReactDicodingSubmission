@@ -1,4 +1,4 @@
-import {archiveNote, deleteNote, getNote} from '../utils/local-data.js';
+import {archiveNote, deleteNote, editNote, getNote, unarchiveNote} from '../utils/local-data.js';
 import NoteDetail from '../components/NoteDetail.jsx';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -33,8 +33,17 @@ class DetailPage extends React.Component {
   };
 
   onRestoreArchiveHandler = (id) => {
-    archiveNote(id);
+    unarchiveNote(id);
 
+    this.props.navigate('/');
+  };
+
+  onEditHandler = ({id, title, body}) => {
+    editNote({
+      id,
+      title,
+      body,
+    });
     this.props.navigate('/');
   };
 
@@ -58,6 +67,7 @@ class DetailPage extends React.Component {
           onDelete={this.onDeleteHandler}
           onArchive={this.onArchiveHandler}
           onRestoreArchive={this.onRestoreArchiveHandler}
+          onEdit={this.onEditHandler}
         />
       </section>
     );
