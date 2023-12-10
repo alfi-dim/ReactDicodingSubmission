@@ -32,8 +32,8 @@ NoteCardUtils.propTypes = {
   note: PropTypes.object.isRequired,
   showFormattedDate: PropTypes.func.isRequired,
   handleDeleteNote: PropTypes.func.isRequired,
-  handleArchiveNote: PropTypes.func.isRequired,
-  handleRestoreArchiveNote: PropTypes.func.isRequired,
+  handleArchiveNote: PropTypes.func,
+  handleRestoreArchiveNote: PropTypes.func,
 };
 
 export default NoteCardUtils;
