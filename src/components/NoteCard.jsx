@@ -11,7 +11,7 @@ class NoteCard extends React.Component {
   render() {
     return (
       <article
-        key={this.props.key}
+        key={this.props.note.id}
         className="bg-[#1e293b] px-2 py-2 flex max-w-xl flex-col items-start justify-between rounded-lg"
       >
         <NoteCardUtils
@@ -31,7 +31,6 @@ NoteCard.propTypes = {
   note: PropTypes.object.isRequired,
   showFormattedDate: PropTypes.func.isRequired,
   handleDeleteNote: PropTypes.func.isRequired,
-  key: PropTypes.string.isRequired,
   handleArchiveNote: PropTypes.func,
   handleRestoreArchiveNote: PropTypes.func,
 };
