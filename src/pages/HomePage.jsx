@@ -4,84 +4,59 @@ import {archiveNote, deleteNote, getActiveNotes, showFormattedDate} from '../uti
 import {useSearchParams} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-function HomePageWrapper() {
+const HomePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const keyword = searchParams.get('keyword');
+  const [notes, setNotes] = React.useState([]);
+  const [keyword, setKeyword] = React.useState(() => {
+    return searchParams.get('keyword') || '';
+  });
 
-  function changeSearchParams(keyword) {
-    setSearchParams({keyword});
-  }
+  React.useEffect(() => {
+    setNotes(getActiveNotes());
+  }, []);
 
-  return <HomePage defaultKeyword={keyword} keywordChange={changeSearchParams}/>;
-}
-
-class HomePage extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      notes: getActiveNotes() || [],
-      keyword: props.defaultKeyword || '',
-    };
-  }
-
-  onDeleteHandler = (id) => {
+  function onDeleteHandler(id) {
     deleteNote(id);
 
     // update the contact state from data.js
-    this.setState(() => {
-      return {
-        notes: getActiveNotes(),
-      };
-    });
-  };
-
-  onArchiveNote = (id) => {
-    archiveNote(id);
-    this.setState(() => {
-      return {
-        notes: getActiveNotes(),
-      };
-    });
-  };
-
-  onKeywordChangeHandler = (keyword) => {
-    this.setState(() => {
-      return {
-        keyword,
-      };
-    });
-
-    this.props.keywordChange(keyword);
-  };
-
-  render() {
-    const notes = this.state.notes.filter((note) => {
-      return note.title.toLowerCase().includes(
-        this.state.keyword.toLowerCase()
-      );
-    });
-
-    return (
-      <section>
-        <NotesContainer
-          notes={notes}
-          title="Active Notes"
-          handleSearchNote={this.onKeywordChangeHandler}
-          handleDeleteNote={this.onDeleteHandler}
-          handleArchiveNote={this.onArchiveNote}
-          showFormattedDate={showFormattedDate}
-          keyword={this.state.keyword}
-          keywordChange={this.onKeywordChangeHandler}
-        />
-      </section>
-    );
+    setNotes(getActiveNotes());
   }
-}
+
+  function onArchiveNote (id) {
+    archiveNote (id);
+    setNotes(getActiveNotes());
+  }
+
+  function onKeywordChangeHandler(keyword) {
+    setKeyword(keyword);
+    setSearchParams({keyword});
+  }
+
+  const filteredNotes = notes.filter((note) => {
+    return note.title.toLowerCase().includes(
+      keyword.toLowerCase()
+    );
+  });
+
+  return (
+    <section>
+      <NotesContainer
+        notes={filteredNotes}
+        title="Active Notes"
+        handleSearchNote={onKeywordChangeHandler}
+        handleDeleteNote={onDeleteHandler}
+        handleArchiveNote={onArchiveNote}
+        showFormattedDate={showFormattedDate}
+        keyword={keyword}
+        keywordChange={onKeywordChangeHandler}
+      />
+    </section>
+  );
+};
 
 HomePage.propTypes = {
   defaultKeyword: PropTypes.string,
   keywordChange: PropTypes.func,
 };
 
-export default HomePageWrapper;
+export default HomePage;

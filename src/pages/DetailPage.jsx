@@ -5,78 +5,63 @@ import PropTypes from 'prop-types';
 import {useNavigate, useParams} from 'react-router-dom';
 import NotFoundPage from './404Page.jsx';
 
-
-function DetailPageWrapper() {
+const DetailPage = () => {
   const {id} = useParams();
   const navigate = useNavigate();
-  return <DetailPage id={id} navigate={navigate}/>;
-}
+  const [note, setNote] = React.useState(getNote(id));
 
-class DetailPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      note: getNote(props.id),
-    };
-  }
-
-  onDeleteHandler = (id) => {
-    deleteNote(id);
-
-    this.props.navigate('/');
+  const onDeleteHandler = (id) => {
+    deleteNote (id);
+    navigate ('/');
   };
 
-  onArchiveHandler = (id) => {
-    archiveNote(id);
-
-    this.props.navigate('/archive');
+  const onArchiveHandler = (id) => {
+    archiveNote (id);
+    navigate ('/archive');
   };
 
-  onRestoreArchiveHandler = (id) => {
-    unarchiveNote(id);
-
-    this.props.navigate('/');
+  const onRestoreArchiveHandler = (id) => {
+    unarchiveNote (id);
+    navigate ('/');
   };
 
-  onEditHandler = ({id, title, body}) => {
-    editNote({
+  const onEditHandler = ({id, title, body}) => {
+    editNote ({
       id,
       title,
       body,
     });
-    this.props.navigate('/');
+    navigate ('/');
   };
 
-  render() {
-    const {note} = this.state;
-    if (!note) {
-      return (
-        <section>
-          <NotFoundPage/>
-        </section>
-      );
-    }
+  if (!note) {
     return (
       <section>
-        <NoteDetail
-          id={note.id}
-          title={note.title}
-          body={note.body}
-          createdAt={note.createdAt}
-          archived={note.archived}
-          onDelete={this.onDeleteHandler}
-          onArchive={this.onArchiveHandler}
-          onRestoreArchive={this.onRestoreArchiveHandler}
-          onEdit={this.onEditHandler}
-        />
+        <NotFoundPage/>
       </section>
     );
   }
-}
+
+  return (
+    <section>
+      <NoteDetail
+        id={note.id}
+        title={note.title}
+        body={note.body}
+        createdAt={note.createdAt}
+        archived={note.archived}
+        onDelete={onDeleteHandler}
+        onArchive={onArchiveHandler}
+        onRestoreArchive={onRestoreArchiveHandler}
+        onEdit={onEditHandler}
+      />
+    </section>
+  );
+};
 
 DetailPage.propTypes = {
   id: PropTypes.string.isRequired,
   navigate: PropTypes.func.isRequired,
 };
 
-export default DetailPageWrapper;
+export default DetailPage;

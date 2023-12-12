@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 
-export default function NotFoundPage() {
+const NotFoundPage = () => {
   return (
     <>
       <main className="grid min-h-full place-items-center text-white px-6 py-24 sm:py-32 lg:px-8">
@@ -19,4 +19,6 @@ export default function NotFoundPage() {
       </main>
     </>
   );
-}
+};
+
+export default NotFoundPage;
