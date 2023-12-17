@@ -1,13 +1,15 @@
 import {FiFolderPlus} from 'react-icons/fi';
 import PropTypes from 'prop-types';
+import {useTheme} from '../hooks/customHooks.js';
 
-function archiveButton({id, onArchive}) {
-  return <button className='icon archive' onClick={() => onArchive(id)}><FiFolderPlus className="fiIcon"/></button>;
+function ArchiveButton({id, onArchive}) {
+  const {textColor} = useTheme();
+  return <button className={textColor} onClick={() => onArchive(id)}><FiFolderPlus className="fiIcon"/></button>;
 }
 
-archiveButton.propTypes = {
+ArchiveButton.propTypes = {
   id: PropTypes.string.isRequired,
   onArchive: PropTypes.func.isRequired,
 };
 
-export default archiveButton;
+export default ArchiveButton;

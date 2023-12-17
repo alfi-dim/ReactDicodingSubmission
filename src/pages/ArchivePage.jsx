@@ -1,9 +1,11 @@
 import React from 'react';
 
 import NotesContainer from '../components/NotesContainer';
-import {deleteNote, getArchivedNotes, showFormattedDate, unarchiveNote} from '../utils/local-data.js';
+import {deleteNote, getArchivedNotes, unarchiveNote} from '../utils/network-data.js';
+import {showFormattedDate} from '../utils/helpers.js';
 import {useSearchParams} from 'react-router-dom';
-import PropTypes from 'prop-types';
+import {useLocale} from '../hooks/customHooks.js';
+import toast from 'react-hot-toast';
 
 const ArchivePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -13,19 +15,38 @@ const ArchivePage = () => {
   });
 
   React.useEffect(() => {
-    setNotes(getArchivedNotes());
-  }, []);
+    getArchivedNotes()
+      .then(({data}) => {
+        setNotes(data);
+      });
+  }, [notes]);
 
-  function onDeleteHandler(id) {
-    deleteNote (id);
-
-    // update the contact state from data.js
-    setNotes(getArchivedNotes());
+  async function onDeleteHandler(id) {
+    await deleteNote(id)
+      .then(() => {
+        toast.success('Note Deleted', {
+          position: 'top-right',
+        });
+      })
+      .catch(() => {
+        toast.error('Failed to delete note', {
+          position: 'top-right',
+        });
+      });
   }
 
-  function onRestoreArchiveNote (id) {
-    unarchiveNote (id);
-    setNotes(getArchivedNotes());
+  async function onRestoreArchiveNote(id) {
+    await unarchiveNote(id)
+      .then(() => {
+        toast.success('Note restored from archive', {
+          position: 'top-right',
+        });
+      })
+      .catch(() => {
+        toast.error('Failed to restore note', {
+          position: 'top-right',
+        });
+      });
   }
 
   function onKeywordChangeHandler(keyword) {
@@ -43,7 +64,9 @@ const ArchivePage = () => {
     <section>
       <NotesContainer
         notes={filteredNotes}
-        title="Archive Notes"
+        title={
+          useLocale('Archive Notes', 'Arsip Catatan')
+        }
         handleSearchNote={onKeywordChangeHandler}
         handleDeleteNote={onDeleteHandler}
         handleRestoreArchiveNote={onRestoreArchiveNote}
@@ -53,11 +76,6 @@ const ArchivePage = () => {
       />
     </section>
   );
-};
-
-ArchivePage.propTypes = {
-  defaultKeyword: PropTypes.string,
-  keywordChange: PropTypes.func,
 };
 
 export default ArchivePage;

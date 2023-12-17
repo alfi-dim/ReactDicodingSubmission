@@ -1,15 +1,26 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import NoteForm from '../components/NoteForm.jsx';
-import {addNote} from '../utils/local-data.js';
+import {addNote} from '../utils/network-data.js';
 import {useNavigate} from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const AddPage = () => {
   const navigate = useNavigate();
 
-  const onAddNoteHandler = (note) => {
-    addNote(note);
-    navigate('/');
+  const onAddNoteHandler = async (note) => {
+    await addNote(note)
+      .then(() => {
+        navigate('/');
+        toast.success('Note added', {
+          position: 'top-right',
+        });
+      })
+      .catch(() => {
+        toast.error('Failed to add note', {
+          position: 'top-right',
+        });
+      });
   };
 
   return (

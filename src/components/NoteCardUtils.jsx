@@ -1,32 +1,29 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import DeleteButton from './DeleteButton.jsx';
 import RestoreArchiveButton from './RestoreArchiveButton.jsx';
 import ArchiveButton from './ArchiveButton.jsx';
 import PropTypes from 'prop-types';
+import {useLocale, useTheme} from '../hooks/customHooks.js';
 
-class NoteCardUtils extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div className="flex gap-x-4 justify-between text-xs w-full">
-        <time dateTime={this.props.note.createdAt} className="text-gray-400">
-          {this.props.showFormattedDate(this.props.note.createdAt)}
-        </time>
-        <div className="flex justify-end gap-x-2">
-          <DeleteButton id={this.props.note.id} onDelete={this.props.handleDeleteNote}/>
-          {
-            this.props.note.archived === true
-              ? <RestoreArchiveButton id={this.props.note.id} onRestoreArchive={this.props.handleRestoreArchiveNote}/>
-              : <ArchiveButton id={this.props.note.id} onArchive={this.props.handleArchiveNote}/>
-          }
-        </div>
+const NoteCardUtils = ({note, handleArchiveNote, handleDeleteNote, handleRestoreArchiveNote, showFormattedDate}) => {
+  const {textColor} = useTheme();
+  return (
+    <div className="flex gap-x-4 justify-between text-xs w-full">
+      <time dateTime={note.createdAt} className={textColor}>
+        {showFormattedDate(note.createdAt, useLocale('en', 'id'))}
+      </time>
+      <div className="flex justify-end gap-x-2">
+        <DeleteButton id={note.id} onDelete={handleDeleteNote}/>
+        {
+          note.archived === true
+            ? <RestoreArchiveButton id={note.id} onRestoreArchive={handleRestoreArchiveNote}/>
+            : <ArchiveButton id={note.id} onArchive={handleArchiveNote}/>
+        }
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 NoteCardUtils.propTypes = {
   note: PropTypes.object.isRequired,

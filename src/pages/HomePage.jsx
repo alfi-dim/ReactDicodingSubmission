@@ -1,8 +1,11 @@
 import React from 'react';
 import NotesContainer from '../components/NotesContainer';
-import {archiveNote, deleteNote, getActiveNotes, showFormattedDate} from '../utils/local-data.js';
+import {archiveNote, deleteNote, getActiveNotes} from '../utils/network-data.js';
+import {showFormattedDate} from '../utils/helpers.js';
 import {useSearchParams} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import {useLocale} from '../hooks/customHooks.js';
+import toast from 'react-hot-toast';
 
 const HomePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -11,20 +14,40 @@ const HomePage = () => {
     return searchParams.get('keyword') || '';
   });
 
+
   React.useEffect(() => {
-    setNotes(getActiveNotes());
-  }, []);
+    getActiveNotes()
+      .then(({data}) => {
+        setNotes(data);
+      });
+  }, [notes]);
 
-  function onDeleteHandler(id) {
-    deleteNote(id);
-
-    // update the contact state from data.js
-    setNotes(getActiveNotes());
+  async function onDeleteHandler(id) {
+    await deleteNote(id)
+      .then(() => {
+        toast.success('Note deleted', {
+          position: 'top-right',
+        });
+      })
+      .catch(() => {
+        toast.error('Failed to delete note', {
+          position: 'top-right',
+        });
+      });
   }
 
-  function onArchiveNote (id) {
-    archiveNote (id);
-    setNotes(getActiveNotes());
+  async function onArchiveNote(id) {
+    await archiveNote(id)
+      .then(() => {
+        toast.success('Note archived', {
+          position: 'top-right',
+        });
+      })
+      .catch(() => {
+        toast.error('Failed to archive note', {
+          position: 'top-right',
+        });
+      });
   }
 
   function onKeywordChangeHandler(keyword) {
@@ -42,7 +65,7 @@ const HomePage = () => {
     <section>
       <NotesContainer
         notes={filteredNotes}
-        title="Active Notes"
+        title={useLocale('Active Notes', 'Daftar Catatan Aktif')}
         handleSearchNote={onKeywordChangeHandler}
         handleDeleteNote={onDeleteHandler}
         handleArchiveNote={onArchiveNote}

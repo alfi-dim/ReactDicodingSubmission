@@ -1,8 +1,11 @@
+import {useTheme} from '../hooks/customHooks.js';
+
 export default function Footer() {
+  const {bgColor, textColor} = useTheme();
   return (
-    <footer className="flex-shrink-0 w-full border-t border-gray-200 bg-[#1e293b]">
+    <footer className={`flex-shrink-0 w-full border-t inset-x-0 bottom-0 border-gray-200 ${bgColor}`}>
       <div className="container mx-auto p-4">
-        <div className="flex items-center justify-center text-white">
+        <div className={`flex items-center justify-center ${textColor}`}>
           <a
             href="https://www.linkedin.com/in/dimasalfiansyah/"
             target="_blank"

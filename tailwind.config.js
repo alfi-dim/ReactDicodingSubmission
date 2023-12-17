@@ -7,7 +7,18 @@ export default {
     './src/components/**/*.{html,js,jsx}'
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        light: {
+          containerBackgroundColor: '#d8d8d8',
+          textColor: '#1e293b',
+        },
+        dark: {
+          containerBackgroundColor: '#1e293b',
+          textColor: '#f5f5f5',
+        },
+      }
+    },
   },
   plugins: [generated],
 };

@@ -1,38 +1,51 @@
-import {archiveNote, deleteNote, editNote, getNote, unarchiveNote} from '../utils/local-data.js';
+import {archiveNote, deleteNote, getNote, unarchiveNote} from '../utils/network-data.js';
 import NoteDetail from '../components/NoteDetail.jsx';
 import React from 'react';
-import PropTypes from 'prop-types';
 import {useNavigate, useParams} from 'react-router-dom';
 import NotFoundPage from './404Page.jsx';
+import Loading from '../components/Loading.jsx';
 
 const DetailPage = () => {
   const {id} = useParams();
   const navigate = useNavigate();
-  const [note, setNote] = React.useState(getNote(id));
+  const [note, setNote] = React.useState(null);
+  const [isLoading, setLoading] = React.useState(true);
 
-  const onDeleteHandler = (id) => {
-    deleteNote (id);
-    navigate ('/');
+  React.useEffect(() => {
+    getNote(id)
+      .then(({data}) => {
+        setNote(data);
+        setLoading(false);
+      });
+  }, [id]);
+  const onDeleteHandler = async (id) => {
+    await deleteNote(id)
+      .then(() => {
+        navigate('/');
+      });
   };
 
-  const onArchiveHandler = (id) => {
-    archiveNote (id);
-    navigate ('/archive');
+  const onArchiveHandler = async (id) => {
+    await archiveNote(id)
+      .then(() => {
+        navigate('/archive');
+      });
   };
 
-  const onRestoreArchiveHandler = (id) => {
-    unarchiveNote (id);
-    navigate ('/');
+  const onRestoreArchiveHandler = async (id) => {
+    await unarchiveNote(id)
+      .then(() => {
+        navigate('/');
+      });
   };
 
-  const onEditHandler = ({id, title, body}) => {
-    editNote ({
-      id,
-      title,
-      body,
-    });
-    navigate ('/');
-  };
+  if (isLoading) {
+    return (
+      <section>
+        <Loading/>
+      </section>
+    );
+  }
 
   if (!note) {
     return (
@@ -53,15 +66,9 @@ const DetailPage = () => {
         onDelete={onDeleteHandler}
         onArchive={onArchiveHandler}
         onRestoreArchive={onRestoreArchiveHandler}
-        onEdit={onEditHandler}
       />
     </section>
   );
-};
-
-DetailPage.propTypes = {
-  id: PropTypes.string.isRequired,
-  navigate: PropTypes.func.isRequired,
 };
 
 export default DetailPage;
