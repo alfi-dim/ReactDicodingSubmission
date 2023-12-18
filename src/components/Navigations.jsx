@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React, {Fragment, useState} from 'react';
 import {Dialog, Menu, Popover, Transition} from '@headlessui/react';
 import {Link} from 'react-router-dom';
@@ -7,6 +6,7 @@ import {HiTranslate} from 'react-icons/hi';
 import {MdBedtime, MdBedtimeOff} from 'react-icons/md';
 import {LocaleContext, ThemeContext} from '../contexts/index.jsx';
 import {useLocale, useTheme} from '../hooks/customHooks.js';
+import PropTypes from 'prop-types';
 
 function Navigation({userName, onLogout}) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -168,5 +168,10 @@ function Navigation({userName, onLogout}) {
     </header>
   );
 }
+
+Navigation.propTypes = {
+  userName: PropTypes.string.isRequired,
+  onLogout: PropTypes.func.isRequired,
+};
 
 export default Navigation;

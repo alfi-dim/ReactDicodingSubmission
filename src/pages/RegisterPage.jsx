@@ -1,5 +1,6 @@
 import {register} from '../utils/network-data.js';
 import RegisterForm from '../components/RegisterForm.jsx';
+import PropTypes from 'prop-types';
 
 const RegisterPage = ({registerSuccess}) => {
   const onRegisterHandler = async ({name, email, password}) => {
@@ -13,6 +14,10 @@ const RegisterPage = ({registerSuccess}) => {
       <RegisterForm register={onRegisterHandler}/>
     </main>
   );
+};
+
+RegisterPage.propTypes = {
+  registerSuccess: PropTypes.func.isRequired,
 };
 
 export default RegisterPage;

@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export const LocaleContext = React.createContext();
-export const ThemeContext = React.createContext();
+export const LocaleContext = React.createContext(undefined);
+export const ThemeContext = React.createContext(undefined);
 
 export const AppProvider = ({children}) => {
   const [locale, setLocale] = React.useState(localStorage.getItem('locale') || 'en');
@@ -28,4 +29,8 @@ export const AppProvider = ({children}) => {
       </ThemeContext.Provider>
     </LocaleContext.Provider>
   );
+};
+
+AppProvider.propTypes = {
+  children: PropTypes.node,
 };
