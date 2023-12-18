@@ -19,7 +19,7 @@ const ArchivePage = () => {
       .then(({data}) => {
         setNotes(data);
       });
-  }, [notes]);
+  }, []);
 
   async function onDeleteHandler(id) {
     await deleteNote(id)
