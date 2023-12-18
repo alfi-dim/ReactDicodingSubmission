@@ -1,6 +1,6 @@
 import LoginForm from '../components/LoginForm.jsx';
 import {login} from '../utils/network-data.js';
-import PropTypes from 'prop-types';
+import {func} from 'prop-types';
 
 const LoginPage = ({loginSuccess}) => {
   const onLoginHandler = async ({email, password}) => {
@@ -17,7 +17,7 @@ const LoginPage = ({loginSuccess}) => {
 };
 
 LoginPage.propTypes = {
-  loginSuccess: PropTypes.func.isRequired,
+  loginSuccess: func.isRequired,
 };
 
 export default LoginPage;

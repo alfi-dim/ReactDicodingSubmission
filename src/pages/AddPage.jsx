@@ -1,5 +1,3 @@
-// eslint-disable-next-line no-unused-vars
-import React from 'react';
 import NoteForm from '../components/NoteForm.jsx';
 import {addNote} from '../utils/network-data.js';
 import {useNavigate} from 'react-router-dom';

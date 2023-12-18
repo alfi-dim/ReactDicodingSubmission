@@ -2,7 +2,7 @@ import {useInput, useLocale, useTheme} from '../hooks/customHooks.js';
 import {Link} from 'react-router-dom';
 import {useState} from 'react';
 import toast from 'react-hot-toast';
-import PropTypes from 'prop-types';
+import {func} from 'prop-types';
 
 const RegisterForm = ({register}) => {
   const [name, onNameChange] = useInput('');
@@ -143,7 +143,7 @@ const RegisterForm = ({register}) => {
 };
 
 RegisterForm.propTypes = {
-  register: PropTypes.func.isRequired
+  register: func.isRequired
 };
 
 export default RegisterForm;

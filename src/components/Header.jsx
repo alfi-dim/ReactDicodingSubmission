@@ -1,6 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-import React from 'react';
-import PropTypes from 'prop-types';
+import {string} from 'prop-types';
 import {useTheme} from '../hooks/customHooks.js';
 
 export default function Header({title}) {
@@ -13,5 +11,5 @@ export default function Header({title}) {
 }
 
 Header.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: string.isRequired,
 };

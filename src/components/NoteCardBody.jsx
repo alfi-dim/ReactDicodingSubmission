@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 import parser from 'html-react-parser';
-import PropTypes from 'prop-types';
+import {object} from 'prop-types';
 import {useTheme} from '../hooks/customHooks.js';
 
 export default function NoteCardBody({note}) {
@@ -16,5 +16,5 @@ export default function NoteCardBody({note}) {
 }
 
 NoteCardBody.propTypes = {
-  note: PropTypes.object.isRequired,
+  note: object.isRequired,
 };

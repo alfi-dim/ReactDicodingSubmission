@@ -1,5 +1,5 @@
 import {FiDelete} from 'react-icons/fi';
-import PropTypes from 'prop-types';
+import {func, string} from 'prop-types';
 import {useTheme} from '../hooks/customHooks.js';
 
 function DeleteButton({id, onDelete}) {
@@ -10,8 +10,8 @@ function DeleteButton({id, onDelete}) {
 }
 
 DeleteButton.propTypes = {
-  id: PropTypes.string.isRequired,
-  onDelete: PropTypes.func.isRequired,
+  id: string.isRequired,
+  onDelete: func.isRequired,
 };
 
 export default DeleteButton;

@@ -1,21 +1,21 @@
-import React from 'react';
+import {useEffect, useState} from 'react';
 import NotesContainer from '../components/NotesContainer';
 import {archiveNote, deleteNote, getActiveNotes} from '../utils/network-data.js';
 import {showFormattedDate} from '../utils/helpers.js';
 import {useSearchParams} from 'react-router-dom';
-import PropTypes from 'prop-types';
+import {func, string} from 'prop-types';
 import {useLocale} from '../hooks/customHooks.js';
 import toast from 'react-hot-toast';
 
 const HomePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [notes, setNotes] = React.useState([]);
-  const [keyword, setKeyword] = React.useState(() => {
+  const [notes, setNotes] = useState([]);
+  const [keyword, setKeyword] = useState(() => {
     return searchParams.get('keyword') || '';
   });
 
 
-  React.useEffect(() => {
+  useEffect(() => {
     getActiveNotes()
       .then(({data}) => {
         setNotes(data);
@@ -78,8 +78,8 @@ const HomePage = () => {
 };
 
 HomePage.propTypes = {
-  defaultKeyword: PropTypes.string,
-  keywordChange: PropTypes.func,
+  defaultKeyword: string,
+  keywordChange: func,
 };
 
 export default HomePage;

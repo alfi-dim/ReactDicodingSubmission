@@ -1,5 +1,5 @@
 import {FiFolderMinus} from 'react-icons/fi';
-import PropTypes from 'prop-types';
+import {func, string} from 'prop-types';
 import {useTheme} from '../hooks/customHooks.js';
 
 function RestoreArchiveButton({id, onRestoreArchive}) {
@@ -16,8 +16,8 @@ function RestoreArchiveButton({id, onRestoreArchive}) {
 }
 
 RestoreArchiveButton.propTypes = {
-  id: PropTypes.string.isRequired,
-  onRestoreArchive: PropTypes.func.isRequired
+  id: string.isRequired,
+  onRestoreArchive: func.isRequired
 };
 
 export default RestoreArchiveButton;

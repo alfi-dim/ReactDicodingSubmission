@@ -1,9 +1,7 @@
-// eslint-disable-next-line no-unused-vars
-import React from 'react';
 import NoteCard from './NoteCard.jsx';
 import Header from './Header.jsx';
 import SearchBox from './SearchBox.jsx';
-import PropTypes from 'prop-types';
+import {array, func, string} from 'prop-types';
 import NotFoundNotesLottie from './NotFoundNotesLottie.jsx';
 
 const NotesContainer = ({
@@ -48,14 +46,14 @@ const NotesContainer = ({
 };
 
 NotesContainer.propTypes = {
-  notes: PropTypes.array.isRequired,
-  showFormattedDate: PropTypes.func.isRequired,
-  handleDeleteNote: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired,
-  handleArchiveNote: PropTypes.func,
-  handleRestoreArchiveNote: PropTypes.func,
-  keyword: PropTypes.string.isRequired,
-  keywordChange: PropTypes.func.isRequired,
+  notes: array.isRequired,
+  showFormattedDate: func.isRequired,
+  handleDeleteNote: func.isRequired,
+  title: string.isRequired,
+  handleArchiveNote: func,
+  handleRestoreArchiveNote: func,
+  keyword: string.isRequired,
+  keywordChange: func.isRequired,
 };
 
 export default NotesContainer;

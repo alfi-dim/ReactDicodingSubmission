@@ -1,8 +1,6 @@
-// eslint-disable-next-line no-unused-vars
-import React from 'react';
 import NoteCardUtils from './NoteCardUtils.jsx';
 import NoteCardBody from './NoteCardBody.jsx';
-import PropTypes from 'prop-types';
+import {func, object} from 'prop-types';
 import {useTheme} from '../hooks/customHooks.js';
 
 const NoteCard = ({note, showFormattedDate, handleArchiveNote, handleDeleteNote, handleRestoreArchiveNote}) => {
@@ -26,10 +24,10 @@ const NoteCard = ({note, showFormattedDate, handleArchiveNote, handleDeleteNote,
 };
 
 NoteCard.propTypes = {
-  note: PropTypes.object.isRequired,
-  showFormattedDate: PropTypes.func.isRequired,
-  handleDeleteNote: PropTypes.func.isRequired,
-  handleArchiveNote: PropTypes.func,
-  handleRestoreArchiveNote: PropTypes.func,
+  note: object.isRequired,
+  showFormattedDate: func.isRequired,
+  handleDeleteNote: func.isRequired,
+  handleArchiveNote: func,
+  handleRestoreArchiveNote: func,
 };
 export default NoteCard;

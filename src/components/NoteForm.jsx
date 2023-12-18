@@ -1,12 +1,12 @@
 import Header from './Header.jsx';
-import React from 'react';
-import PropTypes from 'prop-types';
+import {func} from 'prop-types';
 import {useInput, useLocale} from '../hooks/customHooks.js';
+import {useState} from 'react';
 
 const NoteForm = ({addNoteHandler}) => {
   const [title, onTitleChange] = useInput('');
-  const [usedCharacter, setUsedCharacter] = React.useState(0);
-  const [description, setDescription] = React.useState('');
+  const [usedCharacter, setUsedCharacter] = useState(0);
+  const [description, setDescription] = useState('');
 
   const handleTitleChange = (e) => {
     if (e.target.value.length > 50) {
@@ -86,7 +86,7 @@ const NoteForm = ({addNoteHandler}) => {
 };
 
 NoteForm.propTypes = {
-  addNoteHandler: PropTypes.func.isRequired,
+  addNoteHandler: func.isRequired,
 };
 
 export default NoteForm;

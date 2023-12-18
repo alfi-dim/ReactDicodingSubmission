@@ -1,5 +1,5 @@
 import {FiFolderPlus} from 'react-icons/fi';
-import PropTypes from 'prop-types';
+import {func, string} from 'prop-types';
 import {useTheme} from '../hooks/customHooks.js';
 
 function ArchiveButton({id, onArchive}) {
@@ -8,8 +8,8 @@ function ArchiveButton({id, onArchive}) {
 }
 
 ArchiveButton.propTypes = {
-  id: PropTypes.string.isRequired,
-  onArchive: PropTypes.func.isRequired,
+  id: string.isRequired,
+  onArchive: func.isRequired,
 };
 
 export default ArchiveButton;

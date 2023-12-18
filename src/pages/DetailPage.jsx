@@ -1,6 +1,6 @@
 import {archiveNote, deleteNote, getNote, unarchiveNote} from '../utils/network-data.js';
 import NoteDetail from '../components/NoteDetail.jsx';
-import React from 'react';
+import {useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import NotFoundPage from './404Page.jsx';
 import Loading from '../components/Loading.jsx';
@@ -8,10 +8,10 @@ import Loading from '../components/Loading.jsx';
 const DetailPage = () => {
   const {id} = useParams();
   const navigate = useNavigate();
-  const [note, setNote] = React.useState(null);
-  const [isLoading, setLoading] = React.useState(true);
+  const [note, setNote] = useState(null);
+  const [isLoading, setLoading] = useState(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     getNote(id)
       .then(({data}) => {
         setNote(data);

@@ -1,6 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-import React from 'react';
-import PropTypes from 'prop-types';
+import {func, string} from 'prop-types';
 import {useLocale, useTheme} from '../hooks/customHooks.js';
 
 export default function SearchBox({keyword, keywordChange}) {
@@ -31,6 +29,6 @@ export default function SearchBox({keyword, keywordChange}) {
 }
 
 SearchBox.propTypes = {
-  keyword: PropTypes.string.isRequired,
-  keywordChange: PropTypes.func.isRequired
+  keyword: string.isRequired,
+  keywordChange: func.isRequired
 };

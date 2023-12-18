@@ -1,4 +1,4 @@
-import React from 'react';
+import {useEffect, useState} from 'react';
 
 import NotesContainer from '../components/NotesContainer';
 import {deleteNote, getArchivedNotes, unarchiveNote} from '../utils/network-data.js';
@@ -9,12 +9,12 @@ import toast from 'react-hot-toast';
 
 const ArchivePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [notes, setNotes] = React.useState([]);
-  const [keyword, setKeyword] = React.useState(() => {
+  const [notes, setNotes] = useState([]);
+  const [keyword, setKeyword] = useState(() => {
     return searchParams.get('keyword') || '';
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     getArchivedNotes()
       .then(({data}) => {
         setNotes(data);

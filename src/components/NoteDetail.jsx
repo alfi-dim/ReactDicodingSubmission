@@ -1,6 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-import React from 'react';
-import PropTypes from 'prop-types';
+import {bool, func, string} from 'prop-types';
 import Header from './Header.jsx';
 import DeleteButton from './DeleteButton.jsx';
 import RestoreArchiveButton from './RestoreArchiveButton.jsx';
@@ -41,14 +39,14 @@ function NoteDetail({id, title, body, createdAt, archived, onRestoreArchive, onA
 }
 
 NoteDetail.propTypes = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired,
-  createdAt: PropTypes.string.isRequired,
-  archived: PropTypes.bool.isRequired,
-  onRestoreArchive: PropTypes.func.isRequired,
-  onArchive: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
+  id: string.isRequired,
+  title: string.isRequired,
+  body: string.isRequired,
+  createdAt: string.isRequired,
+  archived: bool.isRequired,
+  onRestoreArchive: func.isRequired,
+  onArchive: func.isRequired,
+  onDelete: func.isRequired,
 };
 
 export default NoteDetail;

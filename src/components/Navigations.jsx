@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import {Fragment, useContext, useState} from 'react';
 import {Dialog, Menu, Popover, Transition} from '@headlessui/react';
 import {Link} from 'react-router-dom';
 import {FiArchive, FiFile, FiFilePlus, FiMenu, FiXCircle} from 'react-icons/fi';
@@ -6,12 +6,12 @@ import {HiTranslate} from 'react-icons/hi';
 import {MdBedtime, MdBedtimeOff} from 'react-icons/md';
 import {LocaleContext, ThemeContext} from '../contexts/index.jsx';
 import {useLocale, useTheme} from '../hooks/customHooks.js';
-import PropTypes from 'prop-types';
+import {func, string} from 'prop-types';
 
 function Navigation({userName, onLogout}) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const {locale, toggleLocale} = React.useContext(LocaleContext);
-  const {theme, toggleTheme} = React.useContext(ThemeContext);
+  const {locale, toggleLocale} = useContext(LocaleContext);
+  const {theme, toggleTheme} = useContext(ThemeContext);
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ');
@@ -170,8 +170,8 @@ function Navigation({userName, onLogout}) {
 }
 
 Navigation.propTypes = {
-  userName: PropTypes.string.isRequired,
-  onLogout: PropTypes.func.isRequired,
+  userName: string.isRequired,
+  onLogout: func.isRequired,
 };
 
 export default Navigation;

@@ -1,6 +1,6 @@
 import {useInput, useLocale, useTheme} from '../hooks/customHooks.js';
 import {Link} from 'react-router-dom';
-import PropTypes from 'prop-types';
+import {func} from 'prop-types';
 
 const LoginForm = ({login}) => {
   const [email, onEmailChange] = useInput('');
@@ -88,7 +88,7 @@ const LoginForm = ({login}) => {
 };
 
 LoginForm.propTypes = {
-  login: PropTypes.func.isRequired,
+  login: func.isRequired,
 };
 
 export default LoginForm;
