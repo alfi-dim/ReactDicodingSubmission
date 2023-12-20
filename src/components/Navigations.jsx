@@ -17,7 +17,7 @@ function Navigation({userName, onLogout}) {
     return classes.filter(Boolean).join(' ');
   }
 
-  const {bgColor, textColor} = useTheme();
+  const {bgColor, textColor, logo} = useTheme();
 
   return (
     <header className={`${bgColor} fixed w-full`}>
@@ -27,9 +27,10 @@ function Navigation({userName, onLogout}) {
 
         <div className="flex lg:flex-1">
           <Link to="/" className="-m-1.5 p-1.5">
-            {
-              useLocale('Notes App', 'Aplikasi Catatan')
-            }
+            {/*{*/}
+            {/*  useLocale('Notes App', 'Aplikasi Catatan')*/}
+            {/*}*/}
+            <img src={logo} alt="logo" className="h-8 w-auto sm:h-10"/>
           </Link>
         </div>
         <div className="flex lg:hidden">

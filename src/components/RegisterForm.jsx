@@ -9,7 +9,7 @@ const RegisterForm = ({register}) => {
   const [email, onEmailChange] = useInput('');
   const [password, onPasswordChange] = useInput('');
   const [confirmPassword, setConfirmPasswordChange] = useState('');
-  const {textColor} = useTheme();
+  const {textColor, logoVertical} = useTheme();
 
   const onConfirmPasswordChange = (event) => {
     setConfirmPasswordChange(event.target.value);
@@ -33,9 +33,9 @@ const RegisterForm = ({register}) => {
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
-            className="mx-auto h-10 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            alt="Your Company"
+            className="mx-auto h-28 w-auto"
+            src={logoVertical}
+            alt="Notes app"
           />
           <h2 className={`mt-10 text-center text-2xl font-bold leading-9 tracking-tight ${textColor}`}>
             {useLocale('Register Account', 'Daftar Akun')}
