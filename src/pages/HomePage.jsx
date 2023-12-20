@@ -25,6 +25,10 @@ const HomePage = () => {
   async function onDeleteHandler(id) {
     await deleteNote(id)
       .then(() => {
+        getActiveNotes()
+          .then(({data}) => {
+            setNotes(data);
+          });
         toast.success('Note deleted', {
           position: 'top-right',
         });
@@ -39,6 +43,10 @@ const HomePage = () => {
   async function onArchiveNote(id) {
     await archiveNote(id)
       .then(() => {
+        getActiveNotes()
+          .then(({data}) => {
+            setNotes(data);
+          });
         toast.success('Note archived', {
           position: 'top-right',
         });

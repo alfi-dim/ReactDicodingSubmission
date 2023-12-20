@@ -24,6 +24,10 @@ const ArchivePage = () => {
   async function onDeleteHandler(id) {
     await deleteNote(id)
       .then(() => {
+        getArchivedNotes()
+          .then(({data}) => {
+            setNotes(data);
+          });
         toast.success('Note Deleted', {
           position: 'top-right',
         });
@@ -38,6 +42,10 @@ const ArchivePage = () => {
   async function onRestoreArchiveNote(id) {
     await unarchiveNote(id)
       .then(() => {
+        getArchivedNotes()
+          .then(({data}) => {
+            setNotes(data);
+          });
         toast.success('Note restored from archive', {
           position: 'top-right',
         });
