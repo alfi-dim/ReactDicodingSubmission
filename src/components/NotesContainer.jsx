@@ -3,6 +3,7 @@ import Header from './Header.jsx';
 import SearchBox from './SearchBox.jsx';
 import {array, func, string} from 'prop-types';
 import NotFoundNotesLottie from './NotFoundNotesLottie.jsx';
+import {useTheme} from '../hooks/customHooks.js';
 
 const NotesContainer = ({
                           notes,
@@ -14,6 +15,7 @@ const NotesContainer = ({
                           showFormattedDate,
                           handleRestoreArchiveNote
                         }) => {
+  const { textColor } = useTheme();
   return (
     <div className="py-24 sm:py-20">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -34,9 +36,9 @@ const NotesContainer = ({
                   key={note.id}
                 />
               ))
-              : <div className="col-span-full text-white text-center">
+              : <div className="col-span-full text-center">
                 <NotFoundNotesLottie/>
-                <p className="text-xl">Nothing to show here :(</p>
+                <p className={`text-xl ${textColor}`}>Nothing to show here :(</p>
               </div>
           }
         </div>
