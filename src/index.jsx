@@ -9,7 +9,7 @@ import {Toaster} from 'react-hot-toast';
 
 const root = createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter basename="/ReactDicodingSubmission">
+  <BrowserRouter>
     <AppProvider>
       <NoteApps/>
       <Toaster/>
