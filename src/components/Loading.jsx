@@ -1,10 +1,12 @@
 import Lottie from 'lottie-react';
 import LoadingAnimation from '../public/lottie/loading.json';
+import { useTheme } from '../hooks/customHooks.js';
 
 const Loading = () => {
+  const { textColor } = useTheme();
   return (
     <div className="loading py-6">
-      <h2 className="text-white text-xl font-bold">Loading your data...</h2>
+      <h2 className={`${textColor} text-xl font-bold`}>Loading your data...</h2>
       <Lottie
         animationData={LoadingAnimation}
         style={

@@ -10,7 +10,7 @@ const RegisterPage = ({registerSuccess}) => {
     }
   };
   return (
-    <main className="min-h-full text-white py-24 sm:py-6">
+    <main className="min-h-full py-24 sm:py-6">
       <RegisterForm register={onRegisterHandler}/>
     </main>
   );

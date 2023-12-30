@@ -2,11 +2,14 @@ import Header from './Header.jsx';
 import {func} from 'prop-types';
 import {useInput, useLocale} from '../hooks/customHooks.js';
 import {useState} from 'react';
+import {useTheme} from '../hooks/customHooks.js';
 
 const NoteForm = ({addNoteHandler}) => {
   const [title, onTitleChange] = useInput('');
   const [usedCharacter, setUsedCharacter] = useState(0);
   const [description, setDescription] = useState('');
+
+  const { textColor } = useTheme();
 
   const handleTitleChange = (e) => {
     if (e.target.value.length > 50) {
@@ -34,10 +37,10 @@ const NoteForm = ({addNoteHandler}) => {
     <form onSubmit={handleSubmit}>
       <div className="space-y-12 py-24 px-16">
         <Header title={useLocale('Create Note', 'Buat Catatan')}/>
-        <div className="border-b border-gray-900/10 pb-12">
+        <div className="pb-12">
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-4">
-              <label htmlFor="title" className="block text-sm font-medium leading-6 text-white">
+              <label htmlFor="title" className={`block text-sm font-medium leading-6 ${textColor}`}>
                 {useLocale('Title', 'Judul')}
               </label>
               <div className="mt-2">
@@ -45,7 +48,7 @@ const NoteForm = ({addNoteHandler}) => {
                   className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md"
                 >
                     <span
-                      className="flex select-none items-center pl-3 text-white sm:text-sm">
+                      className={`flex select-none items-center pl-3 ${textColor} sm:text-sm`}>
                       {usedCharacter} {useLocale('of', 'dari')} 50:
                     </span>
                   <input
@@ -53,7 +56,7 @@ const NoteForm = ({addNoteHandler}) => {
                     name="title"
                     id="title"
                     autoComplete="title"
-                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-white placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    className={`block flex-1 border-0 bg-transparent py-1.5 pl-1 ${textColor} placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6`}
                     placeholder={useLocale('Title', 'Judul')}
                     onChange={handleTitleChange}
                     value={title}
@@ -62,7 +65,7 @@ const NoteForm = ({addNoteHandler}) => {
               </div>
             </div>
             <div className="col-span-full">
-              <label htmlFor="description" className="block text-sm font-medium leading-6 text-white">
+              <label htmlFor="description" className={`block text-sm font-medium leading-6 ${textColor}`}>
                 {useLocale('Description', 'Deskripsi')}
               </label>
               <div
