@@ -34,14 +34,23 @@ function Navigation({userName, onLogout}) {
           </Link>
         </div>
         <div className="flex lg:hidden">
-          <button
-            type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5"
+          {/*<button*/}
+          {/*  type="button"*/}
+          {/*  className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5"*/}
+          {/*  onClick={() => setMobileMenuOpen(true)}*/}
+          {/*>*/}
+          {/*  <span className="sr-only">Open main menu</span>*/}
+          {/*  <FiMenu className="h-6 w-6"/>*/}
+          {/*</button>*/}
+          <div
             onClick={() => setMobileMenuOpen(true)}
-          >
-            <span className="sr-only">Open main menu</span>
-            <FiMenu className="h-6 w-6"/>
-          </button>
+            className="h-8 w-8 m-2.5 rounded-full bg-gray-800 ring-2 ring-white">
+            <img
+              className="h-full w-full rounded-full"
+              src={`https://ui-avatars.com/api/?name=${userName}&background=1e293b&color=fff&rounded=true`}
+              alt="user photo profile"
+            />
+          </div>
         </div>
         <Popover.Group className="hidden lg:grid lg:grid-cols-7 lg:gap-x-2">
           <span className="hidden lg:grid col-span-5 lg:grid-cols-3 lg:gap-x-2">
@@ -110,14 +119,12 @@ function Navigation({userName, onLogout}) {
                   )}
                 </Menu.Item>
                 <Menu.Item>
-                  {({active}) => (
                     <button
-                      className={classNames(active ? 'bg-gray-100' : '', 'text-left w-full block px-4 py-2 text-sm text-gray-700')}
+                      className={'text-left w-full block px-4 py-2 text-sm text-gray-700'}
                       onClick={onLogout}
                     >
                       Sign out
                     </button>
-                  )}
                 </Menu.Item>
               </Menu.Items>
             </Transition>
@@ -132,25 +139,35 @@ function Navigation({userName, onLogout}) {
             <Link to="/" className="-m-1.5 p-1.5">
               <span className="sr-only">{useLocale('Notes App', 'Aplikasi Catatan')}</span>
             </Link>
-            <button
-              type="button"
-              className={`-m-2.5 rounded-md p-2.5 ${textColor}`}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <span className="sr-only">Close menu</span>
-              <FiXCircle className="h-6 w-6" aria-hidden="true"/>
-            </button>
+            {/*<button*/}
+            {/*  type="button"*/}
+            {/*  className={`-m-2.5 rounded-md p-2.5 ${textColor}`}*/}
+            {/*  onClick={() => setMobileMenuOpen(false)}*/}
+            {/*>*/}
+            {/*  <span className="sr-only">Close menu</span>*/}
+            {/*  <FiXCircle className="h-6 w-6" aria-hidden="true"/>*/}
+            {/*</button>*/}
+            <div
+                onClick={() => setMobileMenuOpen(false)}
+                className="h-8 w-8 -m-1.5 rounded-full bg-gray-800 ring-2 ring-white">
+              <img
+                className="h-full w-full rounded-full"
+                src={`https://ui-avatars.com/api/?name=${userName}&background=1e293b&color=fff&rounded=true`}
+                alt="user photo profile"
+              />
+            </div>
           </div>
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6 flex flex-col">
-                <Link to="/" className={`flex items-center gap-1 text-sm font-semibold leading-6 ${textColor}`}>
+                <Link onClick={() => setMobileMenuOpen(false)} to="/"
+                      className={`flex items-center gap-1 text-sm font-semibold leading-6 ${textColor}`}>
                   {useLocale('Active Notes', 'Catatan Aktif')} <FiFile/>
                 </Link>
-                <Link to="/archive" className={`flex items-center gap-1 text-sm font-semibold leading-6 ${textColor}`}>
+                <Link onClick={() => setMobileMenuOpen(false)} to="/archive" className={`flex items-center gap-1 text-sm font-semibold leading-6 ${textColor}`}>
                   {useLocale('Archive Notes', 'Arsip Catatan')} <FiArchive/>
                 </Link>
-                <Link to="/add" className={`flex items-center gap-1 text-sm font-semibold leading-6 ${textColor}`}>
+                <Link onClick={() => setMobileMenuOpen(false)} to="/add" className={`flex items-center gap-1 text-sm font-semibold leading-6 ${textColor}`}>
                   {useLocale('Add Note', 'Tambah Catatan')} <FiFilePlus/>
                 </Link>
                 <button onClick={toggleLocale} className="flex hover:underline"
@@ -161,6 +178,19 @@ function Navigation({userName, onLogout}) {
                     : <MdBedtimeOff className="w-5 h-5"/>
                   }
                 </button>
+                <div className="border-t py-2 border-gray-200">
+                  <p
+                    className={`block text-sm py-2 ${textColor}`}
+                  >
+                    {userName}
+                  </p>
+                  <button
+                    className={`text-left w-full block py-1 text-sm ${textColor}`}
+                    onClick={(e) => onLogout(e)}
+                  >
+                    Sign out
+                  </button>
+                </div>
               </div>
             </div>
           </div>
