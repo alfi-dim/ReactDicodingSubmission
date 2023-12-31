@@ -26,7 +26,6 @@ export default function NoteApps() {
   const onLoginSuccess = async ({accessToken}) => {
     putAccessToken(accessToken);
     const {data} = await getUserLogged();
-    console.log(data);
     if (data) {
       setUserData(data);
       setAuthenticated(true);
@@ -55,7 +54,9 @@ export default function NoteApps() {
       });
   }, []);
 
-  const onLogoutHandler = () => {
+  const onLogoutHandler = (e) => {
+    e.preventDefault();
+
     putAccessToken('');
     setAuthenticated(false);
     setUserData(null);
