@@ -22,7 +22,7 @@ const NotesContainer = ({
         <Header title={title}/>
         <SearchBox keyword={keyword} keywordChange={keywordChange}/>
         <div
-          className="mx-auto mt-6 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 pt-10 sm:mt-16 sm:pt-2 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+          className="mx-0 mt-6 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 pt-10 sm:mt-16 sm:pt-2 lg:max-w-none md:grid-cols-2 lg:grid-cols-3"
         >
           {
             notes.length !== 0
