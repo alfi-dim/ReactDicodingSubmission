@@ -19,7 +19,7 @@ export default {
     },
   },
   plugins: [
+    // eslint-disable-next-line global-require
     require('flowbite/plugin'),
-
   ],
 };

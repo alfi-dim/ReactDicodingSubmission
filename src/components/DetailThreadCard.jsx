@@ -105,7 +105,7 @@ DetailThreadCard.propTypes = {
     }),
     upVotesBy: PropTypes.arrayOf(PropTypes.string),
     downVotesBy: PropTypes.arrayOf(PropTypes.string),
-  }),
+  }).isRequired,
   isUpvoteByMe: PropTypes.bool.isRequired,
   isDownvoteByMe: PropTypes.bool.isRequired,
   upVoteThread: PropTypes.func.isRequired,

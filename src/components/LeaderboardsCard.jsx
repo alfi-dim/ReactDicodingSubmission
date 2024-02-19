@@ -2,7 +2,7 @@ import React from 'react';
 import { Card } from 'flowbite-react';
 import { HiTrophy } from 'react-icons/hi2';
 import { useDispatch, useSelector } from 'react-redux';
-import { asyncGetLeaderboard } from '../states/leaderboard/action.js';
+import { asyncGetLeaderboard } from '../states/leaderboard/action';
 
 export default function LeaderboardsCard() {
   const { leaderboards = [] } = useSelector((states) => states);

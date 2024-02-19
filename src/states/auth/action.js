@@ -1,7 +1,7 @@
 import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import toast from 'react-hot-toast';
-import { storeTokenToLocalStorage } from '../../utils/index.js';
-import fetcher from '../../utils/fetcher.js';
+import { storeTokenToLocalStorage } from '../../utils/index';
+import fetcher from '../../utils/fetcher';
 
 const ActionType = {
   SET_AUTH_USER: 'SET_AUTH_USER',
