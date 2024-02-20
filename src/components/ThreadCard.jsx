@@ -19,7 +19,7 @@ export default function ThreadCard({ thread }) {
   } = thread;
 
   return (
-    <Card href={`home/thread/${id}`} className="max-w-[700px] min-w-[700px] max-h-min mx-auto dark:bg-forum-dark-primary dark:text-white">
+    <Card className="max-w-[700px] min-w-[700px] max-h-min mx-auto dark:bg-forum-dark-primary dark:text-white">
       <section className="grid grid-cols-4 gap-4 w-full">
         <div className="col-span-1 text-right">
           <p>

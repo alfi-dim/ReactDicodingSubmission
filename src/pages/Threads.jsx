@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import ThreadCard from '../components/ThreadCard';
 import useFilter from '../hooks/useFilter';
 
@@ -15,9 +16,10 @@ export default function Threads({ threads }) {
     }
     setFilteredThreads(threads);
   }, [filter, threads]);
-
   return filteredThreads?.map((thread) => (
-    <ThreadCard key={thread.id} thread={thread} />
+    <Link to={`thread/${thread.id}`}>
+      <ThreadCard key={thread.id} thread={thread} />
+    </Link>
   ));
 }
 
