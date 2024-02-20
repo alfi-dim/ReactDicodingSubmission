@@ -19,10 +19,8 @@ import LeaderboardsPage from './pages/Leaderboards';
 import AboutPage from './pages/About';
 
 function App() {
-  const {
-    authUser = null,
-    isPreload = false,
-  } = useSelector((states) => states);
+  const authUser = useSelector((states) => states.authUser);
+  const isPreload = useSelector((states) => states.isPreload);
 
   const dispatch = useDispatch();
 

@@ -13,7 +13,7 @@ import useVote from '../hooks/useVote';
 export default function ThreadCommentCard({
   comment, threadId, isLast,
 }) {
-  const { authUser } = useSelector((states) => states);
+  const authUser = useSelector((states) => states.authUser);
   const dispatch = useDispatch();
   const {
     upVoteHandler,

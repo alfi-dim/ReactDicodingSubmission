@@ -12,7 +12,7 @@ import CategoryBadge from './shared/CategoryBadge';
 export default function DetailThreadCard({
   thread, isUpvoteByMe, isDownvoteByMe, upVoteThread, downVoteThread,
 }) {
-  const { authUser = null } = useSelector((state) => state);
+  const authUser = useSelector((state) => state.authUser);
   const [isFormVisible, setIsFormVisible] = React.useState(false);
   const onFormVisible = (state) => setIsFormVisible(state);
 

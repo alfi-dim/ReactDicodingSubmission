@@ -7,12 +7,11 @@ import Top5LeaderboardSideCard from '../components/Top5LeaderboardSideCard';
 import { asyncGetLeaderboard } from '../states/leaderboard/action';
 
 export default function Home() {
-  const {
-    threads = [],
-    users = [],
-    leaderboards = [],
-    authUser = null,
-  } = useSelector((states) => states);
+  const threads = useSelector((states) => states.threads);
+  const users = useSelector((states) => states.users);
+  const leaderboards = useSelector((states) => states.leaderboards);
+  const authUser = useSelector((states) => states.authUser);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(asyncGetLeaderboard());

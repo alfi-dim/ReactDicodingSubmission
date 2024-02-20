@@ -16,10 +16,9 @@ export default function DetailThreadPage() {
     isDownVote,
   } = useVote();
   const { id } = useParams();
-  const {
-    threadDetail = {},
-    authUser = null,
-  } = useSelector((state) => state);
+  const threadDetail = useSelector((state) => state.threadDetail);
+  const authUser = useSelector((state) => state.authUser);
+
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(asyncPopulateDetailThread(id));

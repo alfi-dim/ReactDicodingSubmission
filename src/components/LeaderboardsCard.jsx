@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { asyncGetLeaderboard } from '../states/leaderboard/action';
 
 export default function LeaderboardsCard() {
-  const { leaderboards = [] } = useSelector((states) => states);
+  const leaderboards = useSelector((states) => states.leaderboards);
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(asyncGetLeaderboard());
