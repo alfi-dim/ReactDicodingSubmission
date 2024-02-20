@@ -8,7 +8,6 @@ import CategoryBadge from './shared/CategoryBadge';
 
 export default function ThreadCard({ thread }) {
   const {
-    id,
     upVotesBy,
     downVotesBy,
     totalComments,
