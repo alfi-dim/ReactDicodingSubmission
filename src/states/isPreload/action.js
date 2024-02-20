@@ -4,7 +4,7 @@ import fetcher from '../../utils/fetcher';
 import { getTokenFromLocalStorage } from '../../utils/index';
 
 const ActionType = {
-  SET_IS_PRELOAD: 'SET_IS_PRELOAD',
+  SET_IS_PRELOAD: 'preload/set',
 };
 
 function setIsPreloadActionCreator(isPreload) {

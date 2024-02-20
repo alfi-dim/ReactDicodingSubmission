@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 import fetcher from '../../utils/fetcher';
 
 const ActionType = {
-  RECEIVE_LEADERBOARD: 'RECEIVE_LEADERBOARD',
+  RECEIVE_LEADERBOARD: 'leaderboard/receive',
 };
 
 function receiveLeaderboardActionCreator(leaderboard) {

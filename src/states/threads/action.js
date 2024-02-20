@@ -4,9 +4,9 @@ import fetcher from '../../utils/fetcher';
 import { getTokenFromLocalStorage } from '../../utils/index';
 
 const ActionType = {
-  RECEIVE_THREADS: 'RECEIVE_THREADS',
-  ADD_THREAD: 'ADD_THREAD',
-  ADD_COMMENT: 'ADD_COMMENT',
+  RECEIVE_THREADS: 'threads/receive',
+  ADD_THREAD: 'threads/addThread',
+  ADD_COMMENT: 'treads/addComment',
 };
 
 function receiveThreadsActionCreator(threads) {

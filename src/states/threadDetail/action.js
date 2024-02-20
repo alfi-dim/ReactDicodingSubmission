@@ -4,9 +4,9 @@ import { getTokenFromLocalStorage } from '../../utils/index';
 import fetcher from '../../utils/fetcher';
 
 const ActionType = {
-  RECEIVE_THREAD_DETAIL: 'RECEIVE_THREAD_DETAIL',
-  TOGGLE_LIKE_THREAD: 'TOGGLE_LIKE_THREAD',
-  TOGGLE_LIKE_COMMENT: 'TOGGLE_LIKE_COMMENT',
+  RECEIVE_THREAD_DETAIL: 'threadDetail/receive',
+  TOGGLE_LIKE_THREAD: 'threadDetail/toggleLikeThread',
+  TOGGLE_LIKE_COMMENT: 'threadDetail/toggleLikeComment',
 };
 
 const VoteType = {
