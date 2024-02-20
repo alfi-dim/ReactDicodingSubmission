@@ -5,6 +5,14 @@ export default function threadDetailReducer(threadDetail = {}, action = {}) {
   switch (action.type) {
     case ActionType.RECEIVE_THREAD_DETAIL:
       return action.payload.threadDetail;
+    case ActionType.ADD_COMMENT:
+      if (threadDetail.id !== action.payload.threadId) {
+        return threadDetail;
+      }
+      return {
+        ...threadDetail,
+        comments: [action.payload.comment, ...threadDetail.comments],
+      };
     case ActionType.TOGGLE_LIKE_THREAD:
       if (threadDetail.id !== action.payload.threadId) {
         return threadDetail;

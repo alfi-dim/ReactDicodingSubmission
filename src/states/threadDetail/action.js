@@ -5,6 +5,7 @@ import fetcher from '../../utils/fetcher';
 
 const ActionType = {
   RECEIVE_THREAD_DETAIL: 'threadDetail/receive',
+  ADD_COMMENT: 'threadDetail/addComment',
   TOGGLE_LIKE_THREAD: 'threadDetail/toggleLikeThread',
   TOGGLE_LIKE_COMMENT: 'threadDetail/toggleLikeComment',
 };
@@ -20,6 +21,16 @@ function receiveThreadDetailActionCreator(threadDetail) {
     type: ActionType.RECEIVE_THREAD_DETAIL,
     payload: {
       threadDetail,
+    },
+  };
+}
+
+function addCommentActionCreator(comment, threadId) {
+  return {
+    type: ActionType.ADD_COMMENT,
+    payload: {
+      comment,
+      threadId,
     },
   };
 }
@@ -44,6 +55,23 @@ function toggleVoteCommentActionCreator(threadId, commentId, userId, voteType) {
       userId,
       voteType,
     },
+  };
+}
+
+function asyncAddComment(body, threadId) {
+  return async (dispatch) => {
+    dispatch(showLoading());
+    const token = getTokenFromLocalStorage();
+    const { comment } = await fetcher.addComment(body, threadId, token)
+      .then((res) => {
+        toast.success('Comment added');
+        return res;
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+    dispatch(addCommentActionCreator(comment, threadId));
+    dispatch(hideLoading());
   };
 }
 
@@ -127,6 +155,7 @@ export {
   ActionType,
   VoteType,
   receiveThreadDetailActionCreator,
+  asyncAddComment,
   asyncToggleVoteThread,
   toggleVoteThreadActionCreator,
   asyncToggleVoteComment,

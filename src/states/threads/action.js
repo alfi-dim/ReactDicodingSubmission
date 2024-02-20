@@ -6,7 +6,6 @@ import { getTokenFromLocalStorage } from '../../utils/index';
 const ActionType = {
   RECEIVE_THREADS: 'threads/receive',
   ADD_THREAD: 'threads/addThread',
-  ADD_COMMENT: 'treads/addComment',
 };
 
 function receiveThreadsActionCreator(threads) {
@@ -24,21 +23,6 @@ function addThreadActionCreator(thread) {
     payload: {
       thread,
     },
-  };
-}
-
-function asyncAddComment(body, threadId) {
-  return async (dispatch) => {
-    dispatch(showLoading());
-    const token = getTokenFromLocalStorage();
-    await fetcher.addComment(body, threadId, token)
-      .then(() => {
-        toast.success('Comment added');
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      });
-    dispatch(hideLoading());
   };
 }
 
@@ -65,5 +49,4 @@ export {
   receiveThreadsActionCreator,
   addThreadActionCreator,
   asyncAddThread,
-  asyncAddComment,
 };

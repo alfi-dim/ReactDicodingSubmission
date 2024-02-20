@@ -1,9 +1,9 @@
 import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import toast from 'react-hot-toast';
 import fetcher from '../../utils/fetcher';
-import { asyncAddComment, receiveThreadsActionCreator } from '../threads/action';
+import { receiveThreadsActionCreator } from '../threads/action';
 import { receiveUsersActionCreator } from '../users/action';
-import { receiveThreadDetailActionCreator } from '../threadDetail/action';
+import { asyncAddComment, receiveThreadDetailActionCreator } from '../threadDetail/action';
 import { asyncGetLeaderboard } from '../leaderboard/action';
 
 export function asyncPopulateThreads() {
